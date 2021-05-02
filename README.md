@@ -40,4 +40,9 @@ __The std::byte Type__
 System programmers sometimes work directly with _raw memory_, which is a collection of bits without a type. Employ the `std::byte` type, available in the `<cstddef>` header, in such situations. The `std:::byte` type permits bitwise logical operations. Using this type for raw data rather than an integral type can help to avoid common sources of difficult-to-debug programming errors.  
 
 __Format Specifier__   
-If you need to enbed Unicode characters into a string literal, look at `wprintf` in the `<cwchar>` header. 
+If you need to enbed Unicode characters into a string literal, look at `wprintf` in the `<cwchar>` header.
+
+__Brace Yourself__
+As a general rule to make initialization simple: use `braced initializers` everywhere. Braces initializers work as intended almost everywhere, and they cause the fewest surprises. For this reason, braced initialization is also called `uniform initialization`.   
+
+### Chapter 3: Reference Types  
