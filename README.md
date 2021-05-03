@@ -37,12 +37,29 @@ __Character Literals__
 All characters except `char` must be prepended by a prefix: `L` for `wchar_t`, `u` for `char16_t`, and `U` for `char32_t`.
 
 __The std::byte Type__  
-System programmers sometimes work directly with _raw memory_, which is a collection of bits without a type. Employ the `std::byte` type, available in the `<cstddef>` header, in such situations. The `std:::byte` type permits bitwise logical operations. Using this type for raw data rather than an integral type can help to avoid common sources of difficult-to-debug programming errors.  
+System programmers sometimes work directly with _raw memory_, which is a collection of bits without a type. Employ the `std::byte` type, available in the `<cstddef>` header, in such situations. The `std::byte` type permits bitwise logical operations. Using this type for raw data rather than an integral type can help to avoid common sources of difficult-to-debug programming errors.  
 
 __Format Specifier__   
-If you need to enbed Unicode characters into a string literal, look at `wprintf` in the `<cwchar>` header.
+If you need to embed Unicode characters into a string literal, look at `wprintf` in the `<cwchar>` header.
 
 __Brace Yourself__
 As a general rule to make initialization simple: use `braced initializers` everywhere. Braces initializers work as intended almost everywhere, and they cause the fewest surprises. For this reason, braced initialization is also called `uniform initialization`.   
 
 ### Chapter 3: Reference Types  
+_Reference types_ store the memory address of objects. There are tow kinds of reference types: _pointers_ and _references_.
+
+__Pointers__
+_Pointers_ are the fundamental mechanism used to refer to memory addresses. Pointers encode the object's address and the object's type.  
+
+__Pointer and Arrays__  
+Pointers share several characteristics with arrays. Pointers encode object location. Array encode the location and length of contiguous objects.    
+At the slightest provocation, an array will decay into a pointer. A decayed array loses length information and converts to a pointer of the array's first element.  
+
+__void Pointers and std::byte Pointers__   
+You use the _void pointer_ `void*` when pointer-to type is irrelevant. The void pointer cannot be dereferenced because the pointed-to type has been erased. Also, C++ forbids void pointer arithmetic for the same reason so bitwise and arithmetic operations are disabled.
+
+When you want to interact with raw memory at the byte level, you use the `std::byte` pointer. Examples include low-level operations like copying raw data between files and memory, encryption, and compression.
+
+__nullptr and Boolean Expressions__  
+A pointer that equals `nullptr` doesn't point to anything. You could use `nullptr` to indicate, for example, that there's no more memory left to allocate or that some error occurred.   
+Pointers have an implicit conversion to bool. Any value that is not `nullptr` convers implicitly to _true_, whereas `nullptr` converts implicitly to _false_.
