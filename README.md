@@ -63,3 +63,5 @@ When you want to interact with raw memory at the byte level, you use the `std::b
 __nullptr and Boolean Expressions__  
 A pointer that equals `nullptr` doesn't point to anything. You could use `nullptr` to indicate, for example, that there's no more memory left to allocate or that some error occurred.   
 Pointers have an implicit conversion to bool. Any value that is not `nullptr` convers implicitly to _true_, whereas `nullptr` converts implicitly to _false_.
+
+### Chapter 4: The Object Life Cycle  

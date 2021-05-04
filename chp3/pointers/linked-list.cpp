@@ -4,7 +4,7 @@ struct Element {
   Element* next {};
 
   void insert_after(Element* new_element) {
-    new_element->next = next;
+     // new_element->next = next; // Not needed
     next = new_element;
   }
 

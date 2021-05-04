@@ -10,7 +10,7 @@ int main() {
 
   *countAddress = 1024;
   printf("Count Address = %p \n", countAddress); // Count Address = 0061FF18
-  printf("Count = %d", *countAddress);           // Count = 1024
+  printf("Count = %d \n", *countAddress);        // Count = 1024
 }
 
 /**

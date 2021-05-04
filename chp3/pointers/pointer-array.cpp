@@ -39,6 +39,6 @@ int main() {
  1) The array assiged to *scores_ptr decays into a pointer to the first element of the array
  2) The array passed to the print_name function decays into a pointer to the first element of the array
  3) When you pass arrays to function you normally pass the pointer to the first element and the array length 
-    This pointer-plust-size approach to passing arrays is ubiquitous in C-style APIs, for example in Windows or Linux system programming.  
+    This pointer-plus-size approach to passing arrays is ubiquitous in C-style APIs, for example in Windows or Linux system programming.  
  4) The sqare bracket, [], works with pointers just as with arrays
 */
