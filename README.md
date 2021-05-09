@@ -108,4 +108,20 @@ __Dynamic Storage Duration__
                     bad_cast
                     bad_alloc
  ```
- The `system_error` reports that the operating system encountered some error. Inside of the `<system_error>` header, there is a large number of _error codes_ and _error conditions_. The `code()` method returns an _enum class_ of type `std::errc` that has a large number of values, such as _bad_file_descriptor_, _timed_out_ and _permission_denied_. 
+ The `system_error` reports that the operating system encountered some error. Inside of the `<system_error>` header, there is a large number of _error codes_ and _error conditions_. The `code()` method returns an _enum class_ of type `std::errc` that has a large number of values, such as _bad_file_descriptor_, _timed_out_ and _permission_denied_.
+
+__Throwing in Destructors__    
+If you throw an exception in a destructor, the C++ compiler will call `terminate`. As a general rule, treat destructors as if they were `noexcept`.
+
+__Constructor and Destructor__    
+When you pair the allocation and deallocation of buffer with the constructor and destructor of a class, you will never leak the storage.  
+This pattern is called _resource acquisition is initialized (RAII)_ or _constructor acquires, destructor releases (CADRe)_.
+
+__Exceptions and Performance__  
+Sometimes, unfortunately, you won't be able to use exceptions. One example is embedded development where real-time guarantees are required. Tools simple don't (yet) exists in this settings. With luck, this will change soon, but for now, you're stuck without exceptions in most embedded contexts. Another examples is with some legacy code. Exceptions are elegant because of how they fit in with _RAII_ objects. When destructors are responsible for cleaning up resources, stack unwinding is a direct and effective way to guarantee against resource leakages. In legacy code, you might find manual resource management and error handing instead of _RAII_ objects. This makes using exceptions very dangerous, because stack unwinding is safe only with _RAII_ objects. Without then, you could easily leak resources.  
+
+__Structured Binding Declaration__   
+_structured binding declaration is a C++ language feature that allows you to return multiple values from a function call.  Structured bindings is only available with C++17.   
+
+__Copy Semantics__   
+__Note__: Like its nefarious cousin the use after free, the double free can result in subtle and hard-to diagnose bug that manifest only very infrequently. A double free occurs when you deallocate an object twice. If you destruct and object that's already been destructed, you've got undefined behavior. In certain situations, this can cause serious security vulnerabilities.   
