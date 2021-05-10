@@ -125,3 +125,8 @@ _structured binding declaration is a C++ language feature that allows you to ret
 
 __Copy Semantics__   
 __Note__: Like its nefarious cousin the use after free, the double free can result in subtle and hard-to diagnose bug that manifest only very infrequently. A double free occurs when you deallocate an object twice. If you destruct and object that's already been destructed, you've got undefined behavior. In certain situations, this can cause serious security vulnerabilities.   
+
+__Default Copy__  
+Any time a class manages a resource, you must be extremely careful with default copy semantics; they are likely to be wrong. Best practice dictates that you explicitly declare that default copy assignment and copy construction are acceptable for such classes using the default keyword.     
+Some classes simply cannot or should not be copied - for example, if your class manages a file or if it represents a mutual exclusive lock for concurrent programming. You can suppress the compiler from generating a cop constructor and a copy assignment operator using the _delete_ keyword.   
+It is highly recommended that you explicitly defined the _copy assignment operator_ and _copy constructor_ for any class that owns a resource (like a printer, a network connection, or a file). If custom behavior is not needed, use either `default` or `delete`. This will save you from a lot of nasty and difficult-to-debug errors.   

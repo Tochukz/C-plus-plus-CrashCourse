@@ -7,9 +7,9 @@ struct Product {
     name[0] = 0;
   }
   
-  // A copy constructor
+  // The copy constructor
   Product(const Product& exitingP): max_size { exitingP.max_size }  { // (1)
-    size_t descriptionLen { sizeof(exitingP.description)/sizeof(char)};
+    size_t descriptionLen = 30; 
     description = new char[descriptionLen];
     name = new char[ exitingP.max_size];
     std::strncpy(description, exitingP.description, descriptionLen); 
@@ -17,20 +17,26 @@ struct Product {
    
     printf("Product copied! \n");
   }
-
-  // Acopy assignment operator
-  Product& operator=(const Product& other) {
+  
+  // The copy assignment operator 
+  Product& operator=(const Product& other) { // (2)
     if (this == &other) {
       return *this;
     }
+    size_t descriptionLen = 30; 
     const auto new_name = new char[other.max_size];
+    const auto new_description = new char[descriptionLen];
     delete[] name;
+    delete[] description;
     
     name = new_name;
+    description = new_description;
     max_size = other.max_size;
-    strcpy_s(name, max_size, other.max_size);
+    strncpy(name, other.name, max_size);
+    strncpy(description, other.description, descriptionLen);
+    printf("Product Assigned! \n");
     return *this;
-  }
+  } 
 
   void set_name(char* nm) {   
     name = nm;
@@ -40,6 +46,10 @@ struct Product {
     return name;
   }
 
+  ~Product() {
+    delete[] name;
+  }
+
   char* description;
   private: 
     size_t max_size;
@@ -47,9 +57,8 @@ struct Product {
 
 };
 
-void change_description(Product product) { // (6)
-  char newDescription[] {"A random product description"};
-  product.description = newDescription;
+void change_description(Product product) { // (7)
+  // 
 }
 
 
@@ -62,7 +71,7 @@ int main() {
 
   char monitorName[] { "Dell"};
   char monitorDescription[] {"A high resolution monitor"};  
-  Product monitor = laptop; // (2)
+  Product monitor = laptop; // Product copied! (3)
   monitor.set_name(monitorName);
   monitor.description = monitorDescription;
 
@@ -72,9 +81,9 @@ int main() {
   drive.set_name(driveName);
   drive.description = driveDescription;
 
-  drive = laptop; // (3)
+  drive = laptop; // Product Assigned! (4)
 
-  Product phone { laptop }; // (4)
+  Product phone { laptop }; // Product copied! (5)
 
   printf("Laptop name = %s \n", laptop.get_name());   // Laptop name = Toshiba 
   printf("Monitor name = %s \n", monitor.get_name()); // Monitor name = Dell     
@@ -84,7 +93,7 @@ int main() {
   printf("Laptop Description: %s \n", laptop.description);  // Laptop Description: A 2.3Ghz laptop
   printf("Monito Description: %s \n", monitor.description); // Monito Description: A high resolution monitor
   printf("Drive description = %s \n", drive.description);   // Drive description = A 2.3Ghz laptop
-  printf("Phone Description: %s \n", phone.description);    // Phone Description: A 2.└
+  printf("Phone Description: %s \n", phone.description);    // Phone Description: A 2.3Ghz laptop
 
   char phoneName[] {"Samsung"};
   char phoneDescription[] {"A 6 Inches Smartphone"};
@@ -93,14 +102,15 @@ int main() {
   printf("Update Phone name = %s \n", phone.get_name());        // Update Phone name = Samsung
   printf("Update Phone Description: %s \n", phone.description); // Update Phone Description: A 6 Inches Smartphone
 
-  change_description(phone); // (5)
+  change_description(phone); // Product copied! (6)
 }
 
 /***
-  1) Implementation of a copy constructor  
-  2) The Copy constructor is invoked implicitly
-  3) Does not trigger the Copy constructor
-  4) Initialization of a new object from an existing object using the copy constructor  
-  5) The copy constructor in invoked when the product object is passed  to the change_description function by value 
-  6) Product object is accepted by value
+  1) Implementation of a copy constructor
+  2) Implementation of a copy assignment operator
+  3) The copy constructor is invoked implicitly
+  4) The Copy constructor is not invoked but the copy assignment Operator is invoked. 
+  5) Initialization of a new object from an existing object using the copy constructor  
+  6) The copy constructor in invoked when the product object is passed  to the change_description function by value 
+  7) Product object is accepted by value
 */ 
