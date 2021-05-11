@@ -130,3 +130,29 @@ __Default Copy__
 Any time a class manages a resource, you must be extremely careful with default copy semantics; they are likely to be wrong. Best practice dictates that you explicitly declare that default copy assignment and copy construction are acceptable for such classes using the default keyword.     
 Some classes simply cannot or should not be copied - for example, if your class manages a file or if it represents a mutual exclusive lock for concurrent programming. You can suppress the compiler from generating a cop constructor and a copy assignment operator using the _delete_ keyword.   
 It is highly recommended that you explicitly defined the _copy assignment operator_ and _copy constructor_ for any class that owns a resource (like a printer, a network connection, or a file). If custom behavior is not needed, use either `default` or `delete`. This will save you from a lot of nasty and difficult-to-debug errors.   
+
+__Move Semantics__  
+_Move semantics_ is move's corollary to copy semantics. Similar to how you specify copying behavior, you specify how objects move with _move constructors_ and _move assignment operators_.
+
+__Value Categories__   
+An _lvalue_ is any value that has a name, and an _rvalue_ is anuthing that isn't an _lvalue_.
+
+Todo: Exercises 4-1 to 4-7
+
+### Chapter 5: Runtime Polymorphism  
+__Polymorphism__  
+C++ offers two polymorphic approaches. _Compile-time polymorphic code_ incorporated polymorphic types you can determine at compile time. The other approach is _runtime polymorphism_, which instead incorporates types determined at runtime. Which approach you choose depends on whether you know the types you want to use with your polymorphic code at compile time or runtime.
+
+__Object Composition and Implementation Inheritance__  
+_Object composition_ is a design pattern where a class contains members of other class types. An alternate, antiquated design pattern called _implementation inheritance_ achieves runtime polymorphism.    
+Over the years, accumulated experience with implementation inheritance has convinced many that it is an anti-pattern.  For example, Go and Rust -- two new and increasingly popular system-programming languages -- have zero support for implementation inheritance.   
+
+__Member Inheritance__   
+The supposes benefit of member inheritance is that you can define functionality once in a base class and not have to repeat it in the derived classes. Unfortunately, experience has convinced many in the programming community to avoid member inheritance because it can easily yield brittle, hard-to-reason-about code compared to composition-based polymorphism. This is why so many modern programming languages exclude it.  
+
+__Virtual Methods__  
+__Note__: Virtual functions can incur runtime overhead, although the cost is typically low (within 25 percent of a regular function call). The compiler generates virtual function tables (vtables) that contains function pointer. At runtime, a consumer of an interface does not generally know its underlying type, but it knows how t invoke the interface's methods (thanks to the vtable). In some circumstances, the linker can detect all uses of an interface and devirtualize a function call. This removes the function call from the vtable and thus eliminates associated runtime cost.  
+
+__Pure-Virtual Classes and Virtual Destructors__  
+Usually, you add virtual destructors to interfaces. In some rare circumstances it's possible to leak resources if you fail to mark destructors as virtual.   
+Declaring a virtual destructor is optional when declaring an interface, but beware. 
