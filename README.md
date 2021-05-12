@@ -155,4 +155,8 @@ __Note__: Virtual functions can incur runtime overhead, although the cost is typ
 
 __Pure-Virtual Classes and Virtual Destructors__  
 Usually, you add virtual destructors to interfaces. In some rare circumstances it's possible to leak resources if you fail to mark destructors as virtual.   
-Declaring a virtual destructor is optional when declaring an interface, but beware. 
+Declaring a virtual destructor is optional when declaring an interface, but beware.
+
+### Chapter 6: Compile-Time Polymorphism
+__Templates__  
+_Template instantiation_ is the process of creating a class or a function from a template. Template instantiation are sometimes called concrete classes and concrete types.
