@@ -160,3 +160,8 @@ Declaring a virtual destructor is optional when declaring an interface, but bewa
 ### Chapter 6: Compile-Time Polymorphism
 __Templates__  
 _Template instantiation_ is the process of creating a class or a function from a template. Template instantiation are sometimes called concrete classes and concrete types.
+
+__Concepts__  
+_Concepts_ constrain template parameters, allowing for parameter checking at the point of instantiation rather than the point of first use. By catching usage issues at the point of instantiation, the compiler can give you a friendly, informative error code.  
+Concepts allow you to express requirements on template parameters directly in language.  
+Concept aren't yet officially part of the C++ standard, although they have been voted into C++20. If you can use GCC 6.0 or later, concepts are available by turning on the `-fconcepts` compiler flag.  
