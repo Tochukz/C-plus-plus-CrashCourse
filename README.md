@@ -165,3 +165,26 @@ __Concepts__
 _Concepts_ constrain template parameters, allowing for parameter checking at the point of instantiation rather than the point of first use. By catching usage issues at the point of instantiation, the compiler can give you a friendly, informative error code.  
 Concepts allow you to express requirements on template parameters directly in language.  
 Concept aren't yet officially part of the C++ standard, although they have been voted into C++20. If you can use GCC 6.0 or later, concepts are available by turning on the `-fconcepts` compiler flag.  
+
+To implement a concept, you write a predicate (a function that returns a boolean).
+```
+template<typename T1, typename T2, ...>
+concept bool my_concept_name() {
+  ...
+  return boolean_expression
+}
+```
+The predicate will return true if the template parameters are supported or false otherwise.
+
+__Type Traits__  
+Type traits are often the building blocks for a concept. Type traits tell you _what_ types are.  
+
+__Requirements__  
+Type traits tell you _what_ types are, but sometimes you must also specify _how_ the template will use them. For this, you use requirements.   
+Because requires expressions are evaluated at compile time, concepts can contain any number of them.   
+
+__Using Concepts__  
+[The Origins Library](https://github.com/asutton/origin)
+
+__static_assert: The Preconcepts Stopgap__  
+You can use type traits in combination with _static_assert_ to achieve a similar result as using a _concept_. Using _static_assert_ as a proxy for concept is a hack, but it's widely uses.  
