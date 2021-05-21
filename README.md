@@ -157,6 +157,8 @@ __Pure-Virtual Classes and Virtual Destructors__
 Usually, you add virtual destructors to interfaces. In some rare circumstances it's possible to leak resources if you fail to mark destructors as virtual.   
 Declaring a virtual destructor is optional when declaring an interface, but beware.
 
+TOdo: Return to chp6 exercises
+
 ### Chapter 6: Compile-Time Polymorphism
 __Templates__  
 _Template instantiation_ is the process of creating a class or a function from a template. Template instantiation are sometimes called concrete classes and concrete types.
@@ -188,3 +190,33 @@ __Using Concepts__
 
 __static_assert: The Preconcepts Stopgap__  
 You can use type traits in combination with _static_assert_ to achieve a similar result as using a _concept_. Using _static_assert_ as a proxy for concept is a hack, but it's widely uses.  
+
+TOdo: Return to chp6 exercises
+
+### Chapter 7: Expressions
+__Unary Arithmetic Operators__   
+The _unary plus_ + and _unary minus_ - operators _promote_ their operand to _int_. So, if the operand is of type _bool_, _char_, _short int_, the result of the expression is an _int_.  
+
+__Binary Arithmetic Operators__  
+Like the unary operators, the binary operator: _addition_ +, _substraction_ -, _multiplication_ *, _division_ /, also cause integer promotion on their operands. There are also floating-point promotion rules and signed promotion rules.
+
+__Free Store Availability__  
+To take control of free store allocation you can overload the free store operations. You do this by overloading the `new` operator.  
+
+#### Overloading Operator new
+Todo:  Return to this
+
+__The <new> Header__    
+In the environment that support free store operations, the `<new>` header contains the following four operators:
+* `void* operator new(size_t)`;
+* `void operator delete(void*);`
+* `void* operator new[](size_t);`
+* `void operator delete[](void*);`
+
+
+#### Execution Order
+_Precedence_ is a compile time concept that drive how operators bind or operands. _Evaluation order_ is a runtime concept that drives the scheduling of operator execution. In general C++ has no clearly specified execution order for operands. The language allows the compiler writers to find clever optimization opportunities.   
+
+#### Type Conversion
+__C-Style Casts__  
+For each C-style cast, there exits some incantation of `static_cast`, `const_cast` and `reinterpret_cast` that would achieve the desired type conversion. C-style casts are far more dangerous than the named casts. 
