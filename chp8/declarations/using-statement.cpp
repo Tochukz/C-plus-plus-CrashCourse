@@ -49,5 +49,7 @@ int main() {
  2) Defining a nested namespace using scope resolution operator 
  3) Using Directive in a block scope
  4) using directive in a namespace scope
- 5) using namespace statement in the global scope imports multiple symbold into the glbal namesapce
+ 5) using namespace statement in the global scope imports multiple symbold into the global namesapce
+
+ Usually, it's a bad idea to have too many using namesapce directive appear in a single translation unit. 
 */
