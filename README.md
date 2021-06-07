@@ -219,4 +219,30 @@ _Precedence_ is a compile time concept that drive how operators bind or operands
 
 #### Type Conversion
 __C-Style Casts__  
-For each C-style cast, there exits some incantation of `static_cast`, `const_cast` and `reinterpret_cast` that would achieve the desired type conversion. C-style casts are far more dangerous than the named casts. 
+For each C-style cast, there exits some incantation of `static_cast`, `const_cast` and `reinterpret_cast` that would achieve the desired type conversion. C-style casts are far more dangerous than the named casts.
+
+__Excercises__  
+Todo: Return to 7-2.
+
+### Chapter 8: Statements
+#### Namespaces
+__Using Directives__  
+__Note:__ You should never put a _using namespace_ directive within a header file. Every source file that includes your header will dump all the symbol from that using directive into the global namespace. This can cause issues that are very difficult to debug.   
+
+Todo: Chapter 8 Exercises
+
+### Chapter 9: Functions
+
+__Prefix Modifiers__  
+_Inlining a function_ means copying and pasting the contents of the function directly into the execution path, eliminating the need for the five steps process required for a function call. This means that as the processor executes your code, it will immediately execute your function's code rather than executing the modest ceremony required for function invocation. The provides a marginal increase in speed at the cost of an increase in binary size.  
+The `inline` keyword hints to the compiler's optimizer to put a function directly inline rather than perform a function call.  
+
+
+__final and override__   
+Whenever you are using interface inheritance, you should mark implementing classes _final_ because the modifier can encourage the compiler to perform an optimization called _devirtualization_. When virtual calls are devirtualized, the compiler eliminates the runtime overhead associated with a virtual call.
+
+__volatile__  
+Only methods marked `volatile` can be invoked on a volatile instance a the class. Similarly, only methods marked `const` to be invoked on a constant instance of a class.
+
+__The Function-Call Operator__  
+You can make user-defined types callable or invocable by overloading the function-call operator `operator()()`. Such a type is called a _function type_, and instance of a function type are called _function objects_.  The function-call operator permits any combination of argument types, return types, and modifiers (except static).
