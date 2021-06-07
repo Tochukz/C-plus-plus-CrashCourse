@@ -15,7 +15,7 @@ int main() {
 }
 
 /**
- The volatile keyword guarantees that expressions (1), (2) and (3) will not be 
- stipped away by the compiler for optimization.
- This can be useful if the statement are used for some side effects.  
+ The volatile keyword guarantees that expressions (1), (2) and (3) will not be
+ stripped away by the compiler for the compiler's optimization purposes.
+ This can be useful if the statement are used for some side effects.
 */
