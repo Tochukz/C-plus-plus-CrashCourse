@@ -221,7 +221,7 @@ _Precedence_ is a compile time concept that drive how operators bind or operands
 __C-Style Casts__  
 For each C-style cast, there exits some incantation of `static_cast`, `const_cast` and `reinterpret_cast` that would achieve the desired type conversion. C-style casts are far more dangerous than the named casts.
 
-__Excercises__  
+__Exercises__  
 Todo: Return to 7-2.
 
 ### Chapter 8: Statements
@@ -246,3 +246,11 @@ Only methods marked `volatile` can be invoked on a volatile instance a the class
 
 __The Function-Call Operator__  
 You can make user-defined types callable or invocable by overloading the function-call operator `operator()()`. Such a type is called a _function type_, and instance of a function type are called _function objects_.  The function-call operator permits any combination of argument types, return types, and modifiers (except static).
+
+## PART II: C++ Libraries and Frameworks  
+
+### Chapter 10: Testing
+__Reg-Green-Refactor__   
+TDD practitioners have a mantra: _red_, _green_, _refactor_.  
+
+Continue from "Requirement: Sensitivity Must Always Be Greater Than One" on Page[250]
