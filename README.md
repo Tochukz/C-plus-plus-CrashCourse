@@ -3,7 +3,10 @@ __By Josh Lospinoso__
 [Book Website](https://ccc.codes/)  
 [Github Example Code](https://github.com/JLospinoso/ccc)
 
-## PART I: The c++ Core Language
+## PART I: The C++ Core Language
+
+### Installation
+See [azrael.digipen.edu/~mmead/www/public/mingw/](https://azrael.digipen.edu/~mmead/www/public/mingw/) for installation instructions.
 
 ### Chapter 1: Up and Running
 __The Compiler Tool Chain__  
@@ -191,7 +194,7 @@ __Using Concepts__
 __static_assert: The Preconcepts Stopgap__  
 You can use type traits in combination with _static_assert_ to achieve a similar result as using a _concept_. Using _static_assert_ as a proxy for concept is a hack, but it's widely uses.  
 
-TOdo: Return to chp6 exercises
+Todo: Return to chp6 exercises
 
 ### Chapter 7: Expressions
 __Unary Arithmetic Operators__   
@@ -253,4 +256,24 @@ You can make user-defined types callable or invocable by overloading the functio
 __Reg-Green-Refactor__   
 TDD practitioners have a mantra: _red_, _green_, _refactor_.  
 
-Continue from "Requirement: Sensitivity Must Always Be Greater Than One" on Page[250]
+#### Unit-Testing and Mocking Frameworks
+__The Catch Unit-Testing Framework__  
+Because it's a header-only library, you can set up Catch by downloading the single-header version and including it in each translation unit that contains unit-testing code.  
+[Catch2 Github](https://github.com/catchorg/Catch2/)   
+[Catch2 Tutotrial](https://github.com/catchorg/Catch2/blob/devel/docs/tutorial.md#top)   
+
+__Google Test__  
+Google Test follows the `xUnit` unit-testing framework tradition. It also includes Google Mocks, the mocking framework.Unlike Catch, Google Test is not a header-only library.  
+[GoogleTest Github](https://github.com/google/googletest)  
+[GoogleTest Docs](https://google.github.io/googletest/)  
+
+Continue from Google Test pg [310]
+
+__Boost Test__  
+Boost Test is a unit-testing framework that ships as part of the Boost C++ libraries. Boost is an excellent collection of open source C++ libraries of which Boost Test is one.  
+[boost.org](https://www.boost.org)   
+You can use Boost Test in three modes: as a header-only library (like Catch), as a static library (like Google Test), or as a shared library, which will link the Boost Test module at runtime.  
+
+### Chapter 11: Smart Pointers
+You can use RAII to handle dynamic memory management by acquiring dynamic storage in the constructor of the RAII object and releasing dynamic storage in the destructor.
+_Smart pointers_ are prewritten implementation of RAAI objects. Smart pointers are class templates that behave like pointers and implement RAII for dynamic objects.  
