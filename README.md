@@ -275,5 +275,35 @@ Boost Test is a unit-testing framework that ships as part of the Boost C++ libra
 You can use Boost Test in three modes: as a header-only library (like Catch), as a static library (like Google Test), or as a shared library, which will link the Boost Test module at runtime.  
 
 ### Chapter 11: Smart Pointers
-You can use RAII to handle dynamic memory management by acquiring dynamic storage in the constructor of the RAII object and releasing dynamic storage in the destructor.
-_Smart pointers_ are prewritten implementation of RAAI objects. Smart pointers are class templates that behave like pointers and implement RAII for dynamic objects.  
+You can use RAII to handle dynamic memory management by acquiring dynamic storage in the constructor of the RAII object and releasing dynamic storage in the destructor.  
+_Smart pointers_ are prewritten implementation of RAII objects. Smart pointers are class templates that behave like pointers and implement RAII for dynamic objects.  
+
+There are five available options included in _stdlib_ and Boost:
+1. _scoped pointer_
+2. _unique pointer_
+3. _shared pointer_
+4. _weak pointer_
+5. _intrusive pointer_    
+Their ownership models differentiate these five smart pointer categories.
+
+__Smart Pointer Ownership__   
+When you use a smart pointer, you can rest assured that the pointed-to object is alive and that the pointed-to object won't leak. The smart pointer manages the object it owns, so you can't forget to destroy it thanks to RAII.
+
+__Scoped Pointers__   
+A _scoped pointer_ expresses _non-transferable_, _exclusive ownership_ over a single dynamic object.  No other smart pointer can have ownership of a scoped pointer's dynamic object.   
+The `boost::scoped_ptr` is defined in the `<boost/smart_ptr/scoped_ptr.hpp>` header. There is no _stdlib_ scoped pointer.  
+
+### C++ and Oracle RDBMS
+To connect to Oracle Database from C++ application  
+__Requirements__  
+* __API__: SQLAPI++ Library
+* __OCCI__: Oracle C++ Call Interface  
+
+Download Links   
+[sqlapi.com/Download/](https://www.sqlapi.com/Download/)  []
+
+
+### Appendix
+__C++ Libraries/Frameworks__  
+* Boost: [Docs](https://www.boost.org/doc/libs/1_76_0/more/getting_started/windows.html)
+* Drogon: [Docs](https://drogon.docsforge.com/master/overview/),  [Githib](https://github.com/an-tao/drogon)
